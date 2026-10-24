@@ -2,5 +2,4 @@ fastapi
 uvicorn
 ultralytics
 pillow
-# Required by FastAPI for multipart/form-data uploads
 python-multipart
