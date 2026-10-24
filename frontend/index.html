@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caries Detection Prototype</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Caries Detection</h1>
+    <p class="sub">Upload a dental photo to highlight possible caries (G.V. Black Class I–VI).</p>
+  </header>
+
+  <main>
+    <p class="notice" role="note"><strong>Research prototype.</strong> Not a medical device and not a diagnosis. Results must be reviewed by a qualified dentist.</p>
+
+    <section class="card" aria-labelledby="upload-h">
+      <h2 id="upload-h">1. Choose a photo</h2>
+      <label class="drop" id="drop" for="file">
+        <input type="file" id="file" class="sr-only" accept="image/jpeg,image/png,image/webp">
+        <span><strong>Click to choose</strong> or drag and drop an image here</span>
+        <small>JPG, PNG or WEBP, up to 15 MB</small>
+      </label>
+      <div id="preview-wrap" hidden>
+        <img id="preview" alt="Preview of the selected dental photo">
+      </div>
+      <div class="row">
+        <button type="button" id="analyze" disabled>Analyze</button>
+        <span id="spinner" class="spinner" hidden role="status" aria-label="Analyzing image"></span>
+      </div>
+      <p id="error" class="error" role="alert" hidden></p>
+      <p class="privacy">Images are processed in memory and not stored.</p>
+    </section>
+
+    <section class="card" id="results" aria-labelledby="res-h" hidden>
+      <h2 id="res-h">2. Results</h2>
+      <div class="row ctl">
+        <label for="conf">Minimum confidence: <output id="conf-out" for="conf">0.40</output></label>
+        <input type="range" id="conf" min="0.20" max="0.95" step="0.01" value="0.40">
+      </div>
+      <fieldset class="legend">
+        <legend>Classes (show / hide)</legend>
+        <div id="legend"></div>
+      </fieldset>
+      <div class="canvas-wrap">
+        <canvas id="canvas" role="img" aria-label="Dental photo with caries detections"></canvas>
+      </div>
+      <button type="button" id="download" class="secondary">Download labeled image</button>
+      <h3>Detections</h3>
+      <p id="empty" hidden></p>
+      <ul id="list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <footer>Research prototype. Not a medical device and not a diagnosis. Results must be reviewed by a qualified dentist.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
